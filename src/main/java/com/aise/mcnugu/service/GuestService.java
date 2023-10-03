@@ -21,7 +21,7 @@ public class GuestService {
     private final HomeRepository homeRepository;
 
 
-    public Long registerHome(String member_id, String home_code) {
+    public Long registerHome(Long member_id, String home_code) {
         Member member = memberRepository.findById(member_id).get();
         Home home = homeRepository.findByCode(home_code);
         Guest guest = new Guest();
@@ -32,7 +32,7 @@ public class GuestService {
         return guest.getId();
     }
 
-    public List<Home> findHomes(String member_id) {
+    public List<Home> findHomes(Long member_id) {
         List<Home> homes = new ArrayList<>();
         homes.addAll(memberRepository.findById(member_id).get().getMyHomes());
         for(Guest g : memberRepository.findById(member_id).get().getHomes()) {
