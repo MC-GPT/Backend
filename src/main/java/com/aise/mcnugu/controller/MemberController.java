@@ -1,12 +1,10 @@
 package com.aise.mcnugu.controller;
 
-import com.aise.mcnugu.domain.dto.SignRequest;
+import com.aise.mcnugu.dto.LoginDto;
+import com.aise.mcnugu.dto.SignupDto;
 import com.aise.mcnugu.jwt.TokenInfo;
 import com.aise.mcnugu.service.MemberService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,9 +18,8 @@ public class MemberController {
 
 
     @PostMapping(value = "/signup")
-    public boolean signup(@RequestBody SignRequest request) {
-        //request.setPassword(passwordEncoder.encode(request.getPassword()));
-        return memberService.signup(request);
+    public boolean signup(@RequestBody SignupDto signupDto) {
+        return memberService.signup(signupDto);
     }
 
 
@@ -38,12 +35,5 @@ public class MemberController {
     @GetMapping("/hello")
     public String hello() {
         return "hello";
-    }
-
-
-    @Getter @Setter
-    static class LoginDto {
-        String account;
-        String password;
     }
 }

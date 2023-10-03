@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
-    //private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -26,9 +24,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .password(member.getPassword())
                 .roles("USER")
                 .build();
-        System.out.println("userDetails");
-        System.out.println(userDetails.getUsername());
-        System.out.println(userDetails.getPassword());
         return userDetails;
 //        return memberRepository.findByAccount(account)
 //                .map(this::createUserDetails)
@@ -36,13 +31,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     // 해당하는 User 의 데이터가 존재한다면 UserDetails 객체로 만들어서 리턴
-    private UserDetails createUserDetails(Member member) {
-        return User.builder()
-                .username(member.getAccount())
-                .password(member.getPassword())
-                //.password(passwordEncoder.encode(member.getPassword()))
-                .roles("USER")
-                //.roles(member.getRoles().toArray(new String[0]))
-                .build();
-    }
+//    private UserDetails createUserDetails(Member member) {
+//        return User.builder()
+//                .username(member.getAccount())
+//                .password(member.getPassword())
+//                .roles("USER")
+//                .build();
+//    }
 }
