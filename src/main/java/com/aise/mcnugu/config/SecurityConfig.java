@@ -30,10 +30,11 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/signup", "/login").permitAll()
-                .requestMatchers("/members/test").hasRole("USER")
+                //.requestMatchers("/members/test").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 

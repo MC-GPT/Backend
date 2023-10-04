@@ -1,15 +1,14 @@
 package com.aise.mcnugu.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter @Setter
@@ -20,7 +19,7 @@ public class Member implements UserDetails {
     @Column(name = "member_id")
     private Long id;
 
-    @Column(unique = true)
+    @Column(name = "member_account", unique = true)
     private String account;
 
     @Column(name = "member_name")
@@ -32,11 +31,14 @@ public class Member implements UserDetails {
     @Column(name = "member_password")
     private String password;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "owner")
     private List<Home> myHomes = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Guest> homes = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Builder.Default

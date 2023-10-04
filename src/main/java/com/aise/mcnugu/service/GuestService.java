@@ -7,13 +7,16 @@ import com.aise.mcnugu.repository.GuestRepository;
 import com.aise.mcnugu.repository.HomeRepository;
 import com.aise.mcnugu.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.AjcMemberMaker;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class GuestService {
 
     private final GuestRepository guestRepository;
@@ -21,24 +24,38 @@ public class GuestService {
     private final HomeRepository homeRepository;
 
 
-    public Long registerHome(Long member_id, String home_code) {
-        Member member = memberRepository.findById(member_id).get();
-        Home home = homeRepository.findByCode(home_code);
+    public List<Home> getMyHomes(String account) {
+        List<Home> myHomes = new ArrayList<>();
+        Member member = memberRepository.findByAccount(account);
+
+        for(Home h : member.getMyHomes()) {
+            myHomes.add(h);
+        }
+
+        return myHomes;
+    }
+    public List<Home> getGuestHomes(String account) {
+        List<Home> guestHomes = new ArrayList<>();
+        Member member = memberRepository.findByAccount(account);
+
+        for(Guest g : member.getHomes()) {
+            guestHomes.add(g.getHome());
+        }
+
+        return guestHomes;
+    }
+
+    @Transactional
+    public Long enterHome(String account, String code) {
+        Member member = memberRepository.findByAccount(account);
+        Home home = homeRepository.findByCode(code);
+
         Guest guest = new Guest();
         guest.setMember(member);
         guest.setHome(home);
         guestRepository.save(guest);
 
-        return guest.getId();
+        return home.getId();
     }
 
-    public List<Home> findHomes(Long member_id) {
-        List<Home> homes = new ArrayList<>();
-        homes.addAll(memberRepository.findById(member_id).get().getMyHomes());
-        for(Guest g : memberRepository.findById(member_id).get().getHomes()) {
-            homes.add(g.getHome());
-        }
-
-        return homes;
-    }
 }

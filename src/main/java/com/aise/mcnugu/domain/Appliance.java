@@ -1,5 +1,6 @@
 package com.aise.mcnugu.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,12 +14,16 @@ public class Appliance {
     @Column(name = "app_id")
     private Long id;
 
+    @Column(name = "app_serial", unique = true)
+    private String serialNumber;
+
     @Column(name = "app_name")
     private String name;
 
     @Column(name = "app_type")
-    private String type;
+    private boolean isLight;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Home home;
 }
