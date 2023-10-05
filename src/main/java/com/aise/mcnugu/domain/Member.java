@@ -28,6 +28,7 @@ public class Member implements UserDetails {
     @Column(name = "member_nickname")
     private String nickname;
 
+    @JsonIgnore
     @Column(name = "member_password")
     private String password;
 

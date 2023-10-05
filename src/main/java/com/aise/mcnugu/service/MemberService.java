@@ -1,13 +1,10 @@
 package com.aise.mcnugu.service;
 
 import com.aise.mcnugu.domain.Authority;
-import com.aise.mcnugu.domain.Guest;
-import com.aise.mcnugu.domain.Home;
 import com.aise.mcnugu.domain.Member;
 import com.aise.mcnugu.dto.SignupDto;
 import com.aise.mcnugu.jwt.JwtTokenProvider;
 import com.aise.mcnugu.jwt.TokenInfo;
-import com.aise.mcnugu.repository.GuestRepository;
 import com.aise.mcnugu.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,9 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +22,6 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final GuestRepository guestRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;

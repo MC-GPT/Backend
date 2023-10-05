@@ -1,8 +1,7 @@
 package com.aise.mcnugu.controller;
 
-import com.aise.mcnugu.domain.Home;
 import com.aise.mcnugu.dto.CreateHomeDto;
-import com.aise.mcnugu.repository.HomeRepository;
+import com.aise.mcnugu.dto.MainResponse;
 import com.aise.mcnugu.service.HomeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,6 @@ import java.security.Principal;
 public class HomeController {
 
     private final HomeService homeService;
-    private final HomeRepository homeRepository;
 
 
     @PostMapping(value = "/create-home")
@@ -23,8 +21,7 @@ public class HomeController {
     }
 
     @GetMapping("/main")
-    public Home mainRoom(@RequestParam(value = "code") String code) {
-        // 주인 또는 게스트인지 확인하는 코드 필요하겠다!
-        return homeRepository.findByCode(code);
+    public MainResponse mainPage(Principal principal, @RequestParam(value = "home") String home_id) {
+        return homeService.mainPage(principal.getName(), Long.parseLong(home_id));
     }
 }

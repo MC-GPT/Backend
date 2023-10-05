@@ -3,6 +3,8 @@ package com.aise.mcnugu.service;
 import com.aise.mcnugu.domain.Home;
 import com.aise.mcnugu.domain.Member;
 import com.aise.mcnugu.dto.CreateHomeDto;
+import com.aise.mcnugu.dto.MainResponse;
+import com.aise.mcnugu.repository.GameRepository;
 import com.aise.mcnugu.repository.HomeRepository;
 import com.aise.mcnugu.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,7 @@ public class HomeService {
 
     private final HomeRepository homeRepository;
     private final MemberRepository memberRepository;
+    private final GameRepository gameRepository;
 
 
     @Transactional
@@ -30,8 +33,15 @@ public class HomeService {
         return home.getId();
     }
 
-    @Transactional
-    public void deleteHome(Long home_id) {
-        homeRepository.deleteById(home_id);
+    public MainResponse mainPage(String account, Long id) {
+        // 게스트인지 확인 해야지?
+        Home home = homeRepository.findById(id).get();
+        MainResponse mainResponse = MainResponse.builder()
+                .home_name(home.getName())
+                .isOwner(account.equals(home.getOwner().getAccount()))
+                .apps(home.getAppliances())
+                .games(gameRepository.findAll())
+                .build();
+        return mainResponse;
     }
 }

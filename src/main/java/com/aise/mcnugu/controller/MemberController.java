@@ -4,7 +4,6 @@ import com.aise.mcnugu.domain.Home;
 import com.aise.mcnugu.dto.LoginDto;
 import com.aise.mcnugu.dto.SignupDto;
 import com.aise.mcnugu.jwt.TokenInfo;
-import com.aise.mcnugu.repository.GuestRepository;
 import com.aise.mcnugu.service.GuestService;
 import com.aise.mcnugu.service.MemberService;
 import lombok.RequiredArgsConstructor;

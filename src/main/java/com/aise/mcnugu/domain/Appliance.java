@@ -14,14 +14,22 @@ public class Appliance {
     @Column(name = "app_id")
     private Long id;
 
+    @JsonIgnore
     @Column(name = "app_serial", unique = true)
     private String serialNumber;
 
     @Column(name = "app_name")
     private String name;
 
-    @Column(name = "app_type")
+    @Column(name = "app_light")
     private boolean isLight;
+
+    // 0 - 냉장고, 1 - 에어컨, 2 - 홈브류
+    @Column(name = "app_type")
+    private int type;
+
+    @Column(name = "app_locked")
+    private boolean locked;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

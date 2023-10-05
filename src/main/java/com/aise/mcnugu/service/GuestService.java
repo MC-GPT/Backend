@@ -46,7 +46,7 @@ public class GuestService {
     }
 
     @Transactional
-    public Long enterHome(String account, String code) {
+    public Home enterHome(String account, String code) {
         Member member = memberRepository.findByAccount(account);
         Home home = homeRepository.findByCode(code);
 
@@ -55,7 +55,7 @@ public class GuestService {
         guest.setHome(home);
         guestRepository.save(guest);
 
-        return home.getId();
+        return home;
     }
 
 }
