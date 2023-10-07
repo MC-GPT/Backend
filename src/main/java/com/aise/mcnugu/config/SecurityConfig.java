@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/signup", "/login").permitAll()
+                .requestMatchers("/signup", "/login", "/gpt", "/chat").permitAll()
                 //.requestMatchers("/members/test").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()

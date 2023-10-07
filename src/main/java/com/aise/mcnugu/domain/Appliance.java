@@ -24,6 +24,7 @@ public class Appliance {
     @Column(name = "app_light")
     private boolean isLight;
 
+    // 어짜피 기능 구현 안할건데 필요할까?
     // 0 - 냉장고, 1 - 에어컨, 2 - 홈브류
     @Column(name = "app_type")
     private int type;

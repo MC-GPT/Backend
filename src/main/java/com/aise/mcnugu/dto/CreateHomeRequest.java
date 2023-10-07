@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class CreateHomeDto {
+public class CreateHomeRequest {
 
     private String name;
 }

@@ -2,7 +2,7 @@ package com.aise.mcnugu.service;
 
 import com.aise.mcnugu.domain.Home;
 import com.aise.mcnugu.domain.Member;
-import com.aise.mcnugu.dto.CreateHomeDto;
+import com.aise.mcnugu.dto.CreateHomeRequest;
 import com.aise.mcnugu.dto.MainResponse;
 import com.aise.mcnugu.repository.GameRepository;
 import com.aise.mcnugu.repository.HomeRepository;
@@ -22,10 +22,10 @@ public class HomeService {
 
 
     @Transactional
-    public Long createHome(CreateHomeDto createHomeDto, String account) {
+    public Long createHome(CreateHomeRequest createHomeRequest, String account) {
         Member owner = memberRepository.findByAccount(account);
         Home home = new Home();
-        home.setName(createHomeDto.getName());
+        home.setName(createHomeRequest.getName());
         home.setCode(Integer.toString((int)(Math.random() * 8999) + 1000) + owner.getId());
         home.setOwner(owner);
         homeRepository.save(home);
@@ -43,5 +43,15 @@ public class HomeService {
                 .games(gameRepository.findAll())
                 .build();
         return mainResponse;
+    }
+
+    @Transactional
+    public String refreshHomeCode(String account, Long home_id) {
+        Home home = homeRepository.findById(home_id).get();
+        if(account.equals(home.getOwner().getAccount()))
+            return home.refreshCode();
+        else
+            // 권한이 없을 경우 에러!
+            return "error!";
     }
 }

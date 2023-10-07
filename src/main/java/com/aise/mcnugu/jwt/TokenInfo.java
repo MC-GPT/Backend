@@ -14,4 +14,6 @@ public class TokenInfo {
     private String accessToken;
 
     private String refreshToken;
+
+    // account, nickname 정보도 추가로 response
 }

@@ -2,7 +2,7 @@ package com.aise.mcnugu.service;
 
 import com.aise.mcnugu.domain.Authority;
 import com.aise.mcnugu.domain.Member;
-import com.aise.mcnugu.dto.SignupDto;
+import com.aise.mcnugu.dto.SignupRequest;
 import com.aise.mcnugu.jwt.JwtTokenProvider;
 import com.aise.mcnugu.jwt.TokenInfo;
 import com.aise.mcnugu.repository.MemberRepository;
@@ -28,7 +28,7 @@ public class MemberService {
 
 
     @Transactional
-    public boolean signup(SignupDto request) {
+    public boolean signup(SignupRequest request) {
         Member member = new Member();
         member.setAccount(request.getAccount());
         member.setName(request.getName());

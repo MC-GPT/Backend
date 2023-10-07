@@ -1,8 +1,8 @@
 package com.aise.mcnugu.controller;
 
 import com.aise.mcnugu.domain.Home;
-import com.aise.mcnugu.dto.LoginDto;
-import com.aise.mcnugu.dto.SignupDto;
+import com.aise.mcnugu.dto.LoginRequest;
+import com.aise.mcnugu.dto.SignupRequest;
 import com.aise.mcnugu.jwt.TokenInfo;
 import com.aise.mcnugu.service.GuestService;
 import com.aise.mcnugu.service.MemberService;
@@ -25,14 +25,14 @@ public class MemberController {
 
 
     @PostMapping(value = "/signup")
-    public boolean signup(@RequestBody SignupDto signupDto) {
-        return memberService.signup(signupDto);
+    public boolean signup(@RequestBody SignupRequest signupRequest) {
+        return memberService.signup(signupRequest);
     }
 
 
     @PostMapping(value = "/login")
-    public TokenInfo login(@RequestBody LoginDto loginDto) {
-        return memberService.login(loginDto.getAccount(), loginDto.getPassword());
+    public TokenInfo login(@RequestBody LoginRequest loginRequest) {
+        return memberService.login(loginRequest.getAccount(), loginRequest.getPassword());
     }
 
     @GetMapping(value = "/homes")
@@ -42,11 +42,5 @@ public class MemberController {
         homes.addAll(guestService.getMyHomes(principal.getName()));
         homes.addAll(guestService.getGuestHomes(principal.getName()));
         return homes;
-    }
-
-    // 나중에 없앨거야
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello";
     }
 }
