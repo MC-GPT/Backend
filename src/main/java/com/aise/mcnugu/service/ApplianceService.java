@@ -35,4 +35,8 @@ public class ApplianceService {
 
         return applianceRepository.save(appliance).getId();
     }
+
+    public Appliance getApp(Long app_id) {
+        return applianceRepository.findById(app_id).get();
+    }
 }
