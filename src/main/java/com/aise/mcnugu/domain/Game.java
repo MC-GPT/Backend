@@ -18,7 +18,7 @@ public class Game {
     @Column(name = "game_name")
     private String name;
 
-    // 0 - 이미지 게임 | 1 - 영화 게임 | 2 - 모여라 게임
+    // 0 - 이미지 게임 | 1 - 지도 게임 | 2 - 모여라 게임
     private Long gameType;
 
     // 게임 이미지 제공 url ~ Flask 서버 => {문제 사진 url, 정답 사진 url} json 제공
