@@ -1,4 +1,4 @@
-package com.aise.mcnugu.config;
+package com.aise.mcnugu.websocket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         log.info("payload : {}", payload);
 
         Message msg = objectMapper.readValue(payload, Message.class);
-        MsgRoom room = msgService.findById(msg.getRoomId());
+        GameRoom room = msgService.findById(Long.parseLong(msg.getRoomId()));
         room.handleActions(session, msg, msgService);
     }
 }

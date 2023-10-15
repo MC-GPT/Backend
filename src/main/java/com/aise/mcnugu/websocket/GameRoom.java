@@ -1,4 +1,4 @@
-package com.aise.mcnugu.config;
+package com.aise.mcnugu.websocket;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,21 +9,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter @Setter
-public class MsgRoom {
+public class GameRoom {
 
-    private String roomId;
-    private Set<WebSocketSession> sessions = new HashSet<>();
+    private Long roomId;
+    private Set<WebSocketSession> sessions = new HashSet<>();  // 현재 연결중인 클라이언트 정보
 
 
     @Builder
-    public MsgRoom(String roomId) {
+    public GameRoom(Long roomId) {
         this.roomId = roomId;
     }
 
     public void handleActions(WebSocketSession session, Message message, MsgService msgService) {
-        if(message.getMessageType().equals(Message.MessageType.ENTER)) {
+        if (message.getMessageType().equals(Message.MessageType.ENTER)) {
             sessions.add(session);
-            message.setMessage(message.getSender() + "님이 입장했습니다.");
+            message.setMessage(message.getSender() + "입장");
         }
         sendMessage(message, msgService);
     }

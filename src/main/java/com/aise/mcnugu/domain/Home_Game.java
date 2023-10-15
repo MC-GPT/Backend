@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.net.URL;
 
 @Entity
 @Getter @Setter
@@ -25,11 +23,6 @@ public class Home_Game {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member mc;
 
-    @OneToMany
-    private List<Member> order = new ArrayList<>();
-
-
-    public void refresh() {
-        this.order.clear();
-    }
+    // 실시간 socket 연결 url
+    private URL realtimeUrl;
 }

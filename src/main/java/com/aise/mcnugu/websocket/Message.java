@@ -1,7 +1,11 @@
-package com.aise.mcnugu.config;
+package com.aise.mcnugu.websocket;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 public class Message {
@@ -15,5 +19,7 @@ public class Message {
 
     private String sender;
 
-    private String message;
+    private String Message;
+
+    private List<URL> imageUrl = new ArrayList<>();
 }
