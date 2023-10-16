@@ -4,9 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class NewGameRequest {
+public class GameRoomRequest {
 
-    private Long game_id;
+    private String home_id;
 
-    private Long home_id;
+    private String game_id;
 }

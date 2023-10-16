@@ -10,7 +10,7 @@ import java.util.List;
 @Getter @Setter
 public class Message {
     public enum MessageType {
-        ENTER, COMM
+        ENTER, NEXT, ANSWER
     }
 
     private MessageType messageType;
