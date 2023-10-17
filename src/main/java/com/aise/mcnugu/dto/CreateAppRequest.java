@@ -3,7 +3,7 @@ package com.aise.mcnugu.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
 public class CreateAppRequest {
 
     private String serialNumber;

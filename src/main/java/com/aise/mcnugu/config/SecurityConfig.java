@@ -29,6 +29,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
+                // 최종적으로는 /signup /login 만 남을것
                 .requestMatchers("/signup", "/login", "/gpt", "/chat", "/ws/game").permitAll()
                 //.requestMatchers("/members/test").hasRole("USER")
                 .anyRequest().authenticated()
