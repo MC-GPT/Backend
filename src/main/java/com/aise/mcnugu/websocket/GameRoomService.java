@@ -20,7 +20,7 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class MsgService {
+public class GameRoomService {
 
     private final ObjectMapper objectMapper;
     private Map<Long, GameRoom> gameRooms;
@@ -42,16 +42,26 @@ public class MsgService {
 
     // host 의 session 이 닫히면, 삭제
     public void deleteBySession(WebSocketSession session) {
-        gameRooms.forEach((id, gameRoom) -> {
-            if (gameRoom.getHost().equals(session)) {
-                gameRooms.remove(id);
+        List<Long> roomsToRemove = new ArrayList<>();
+
+        for (Map.Entry<Long, GameRoom> entry : gameRooms.entrySet()) {
+            Long id = entry.getKey();
+            GameRoom gameRoom = entry.getValue();
+
+            if (gameRoom != null && gameRoom.getHost() != null && gameRoom.getHost().equals(session)) {
+                // Add rooms to remove to a list to avoid concurrent modification
+                roomsToRemove.add(id);
                 home_gameRepository.deleteById(id);
                 // 삭제 메시지 -> guest 모두 방 퇴출! (프론트에서 구현)
-                return;
-                // 삭제는 되는데 자꾸 null 에러 난다..
             }
-        });
+        }
+
+        // Now, remove the game rooms after the loop to avoid concurrent modification
+        for (Long idToRemove : roomsToRemove) {
+            gameRooms.remove(idToRemove);
+        }
     }
+
 
     public Long createRoom(Long home_id, Long game_id, String account) {
         Home_Game home_game = new Home_Game();

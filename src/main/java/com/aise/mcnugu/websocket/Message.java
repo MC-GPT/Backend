@@ -21,5 +21,5 @@ public class Message {
 
     private String Message;
 
-    private List<URL> imageUrl = new ArrayList<>();
+    private List<URL> imageUrls = new ArrayList<>();
 }

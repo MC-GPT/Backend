@@ -14,7 +14,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Slf4j
 public class WebSocketHandler extends TextWebSocketHandler {
 
-    private final MsgService msgService;
+    private final GameRoomService gameRoomService;
     private final ObjectMapper objectMapper;
 
 
@@ -24,12 +24,12 @@ public class WebSocketHandler extends TextWebSocketHandler {
         log.info("payload : {}", payload);
 
         Message msg = objectMapper.readValue(payload, Message.class);
-        GameRoom room = msgService.findById(Long.parseLong(msg.getRoomId()));
-        room.handleActions(session, msg, msgService);
+        GameRoom room = gameRoomService.findById(Long.parseLong(msg.getRoomId()));
+        room.handleActions(session, msg, gameRoomService);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        msgService.deleteBySession(session);
+        gameRoomService.deleteBySession(session);
     }
 }

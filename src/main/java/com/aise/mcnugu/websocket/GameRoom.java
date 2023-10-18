@@ -33,26 +33,26 @@ public class GameRoom {
     }
 
 
-    public void handleActions(WebSocketSession session, Message message, MsgService msgService) {
+    public void handleActions(WebSocketSession session, Message message, GameRoomService gameRoomService) {
         if (message.getMessageType().equals(Message.MessageType.ENTER)) {
             if (host == null)
                 host = session;
             sessions.add(session);
             message.setMessage(message.getSender() + " 입장");
             // 추후 삭제
-            sendMessage(message.getSender(), msgService);
+            sendMessage(message.getMessage(), gameRoomService);
         }
         if (message.getMessageType().equals(Message.MessageType.NEXT)) {
             // 다음 문제 (Flask -> 프론트)에서 받아서 채팅에 쏴줘~
-            sendMessage(message.getImageUrl(), msgService);
+            sendMessage(message.getImageUrl(), gameRoomService);
         }
         if (message.getMessageType().equals(Message.MessageType.ANSWER)) {
             // 문제 정답 (Flask -> 프론트)에서 받아서 채팅에 쏴줘~
-            sendMessage(message.getImageUrl(), msgService);
+            sendMessage(message.getImageUrl(), gameRoomService);
         }
     }
 
-    public <T> void sendMessage(T message, MsgService msgService) {
-        sessions.parallelStream().forEach(session -> msgService.sendMessage(session, message));
+    public <T> void sendMessage(T message, GameRoomService gameRoomService) {
+        sessions.parallelStream().forEach(session -> gameRoomService.sendMessage(session, message));
     }
 }
