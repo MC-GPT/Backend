@@ -1,5 +1,6 @@
 package com.aise.mcnugu.websocket;
 
+import com.aise.mcnugu.domain.Game;
 import com.aise.mcnugu.domain.Home_Game;
 import com.aise.mcnugu.repository.GameRepository;
 import com.aise.mcnugu.repository.HomeRepository;
@@ -38,6 +39,14 @@ public class GameRoomService {
 
     public GameRoom findById(Long roomId) {
         return gameRooms.get(roomId);
+    }
+
+    public Long getGameType(Long roomId) {
+        Home_Game home_game = home_gameRepository.findById(roomId).get();
+        System.out.println(home_game);
+        Game game = home_game.getGame();
+        System.out.println(game);
+        return game.getGameType();
     }
 
     // host 의 session 이 닫히면, 삭제

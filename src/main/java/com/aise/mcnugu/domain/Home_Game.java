@@ -17,7 +17,7 @@ public class Home_Game {
     @OneToOne(fetch = FetchType.LAZY)
     private Home home;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Game game;
 
     @ManyToOne(fetch = FetchType.LAZY)

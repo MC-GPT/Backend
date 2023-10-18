@@ -34,6 +34,7 @@ public class GameRoom {
 
 
     public void handleActions(WebSocketSession session, Message message, GameRoomService gameRoomService) {
+        Long gameType = gameRoomService.getGameType(Long.parseLong(message.getRoomId()));
         if (message.getMessageType().equals(Message.MessageType.ENTER)) {
             if (host == null)
                 host = session;
@@ -44,11 +45,25 @@ public class GameRoom {
         }
         if (message.getMessageType().equals(Message.MessageType.NEXT)) {
             // 다음 문제 (Flask -> 프론트)에서 받아서 채팅에 쏴줘~
-            sendMessage(message.getImageUrls(), gameRoomService);
+            if (gameType == 0L || gameType == 1L) {
+                // 합성게임, 지도게임
+                sendMessage(message.getImageUrls(), gameRoomService);
+            } else {
+                // 모여라 게임
+            }
         }
         if (message.getMessageType().equals(Message.MessageType.ANSWER)) {
             // 문제 정답 (Flask -> 프론트)에서 받아서 채팅에 쏴줘~
-            sendMessage(message.getImageUrls(), gameRoomService);
+            if (gameType == 0L) {
+                // 합성게임
+                sendMessage(message.getImageUrls(), gameRoomService);
+            } else if (gameType == 1L) {
+                // 지도게임
+                sendMessage(message.getMessage(), gameRoomService);
+            } else {
+                // 모여라게임
+            }
+
         }
     }
 
