@@ -44,11 +44,11 @@ public class GameRoom {
         }
         if (message.getMessageType().equals(Message.MessageType.NEXT)) {
             // 다음 문제 (Flask -> 프론트)에서 받아서 채팅에 쏴줘~
-            sendMessage(message.getImageUrl(), gameRoomService);
+            sendMessage(message.getImageUrls(), gameRoomService);
         }
         if (message.getMessageType().equals(Message.MessageType.ANSWER)) {
             // 문제 정답 (Flask -> 프론트)에서 받아서 채팅에 쏴줘~
-            sendMessage(message.getImageUrl(), gameRoomService);
+            sendMessage(message.getImageUrls(), gameRoomService);
         }
     }
 

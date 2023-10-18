@@ -9,6 +9,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class TokenInfo {
 
+    private String account;
+
+    private String nickname;
+
     private String grantType;
 
     private String accessToken;
