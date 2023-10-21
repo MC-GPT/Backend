@@ -37,7 +37,9 @@ public class HomeService {
         // 게스트인지 확인 해야지?
         Home home = homeRepository.findById(id).get();
         MainResponse mainResponse = MainResponse.builder()
+                .home_id(home.getId())
                 .home_name(home.getName())
+                .home_code(home.getCode())
                 .isOwner(account.equals(home.getOwner().getAccount()))
                 .apps(home.getAppliances())
                 .games(gameRepository.findAll())

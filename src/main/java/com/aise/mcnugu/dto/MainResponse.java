@@ -11,7 +11,11 @@ import java.util.List;
 @Getter
 public class MainResponse {
 
+    private Long home_id;
+
     private String home_name;
+
+    private String home_code;
 
     private boolean isOwner;
 
