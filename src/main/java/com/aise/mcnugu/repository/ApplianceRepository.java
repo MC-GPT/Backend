@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ApplianceRepository extends JpaRepository<Appliance, Long> {
 
-    public List<Appliance> findAllByHome_Code(String code);
+    public List<Appliance> findAllByHomeId(Long home_id);
 }

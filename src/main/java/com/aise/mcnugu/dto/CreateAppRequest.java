@@ -1,7 +1,6 @@
 package com.aise.mcnugu.dto;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class CreateAppRequest {
@@ -10,11 +9,11 @@ public class CreateAppRequest {
 
     private String name;
 
-    private boolean isLight;
-
-    private int type;
-
-    private boolean locked;
-
     private Long home_id;
+
+    private boolean light;
+
+    private int type = 0;
+
+    private boolean locked = false;
 }

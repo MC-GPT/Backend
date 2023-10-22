@@ -6,12 +6,16 @@ import com.aise.mcnugu.dto.CreateAppRequest;
 import com.aise.mcnugu.repository.ApplianceRepository;
 import com.aise.mcnugu.repository.HomeRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class ApplianceService {
 
     private final ApplianceRepository applianceRepository;
@@ -28,12 +32,16 @@ public class ApplianceService {
         Appliance appliance = new Appliance();
         appliance.setSerialNumber(request.getSerialNumber());
         appliance.setName(request.getName());
-        appliance.setLight(false);
-        appliance.setType(0);
-        appliance.setLocked(false);
+        appliance.setLight(request.isLight());
+        appliance.setType(request.getType());
+        appliance.setLocked(request.isLocked());
         appliance.setHome(home);
 
         return applianceRepository.save(appliance).getId();
+    }
+
+    public List<Appliance> getApps(Long home_id) {
+        return applianceRepository.findAllByHomeId(home_id);
     }
 
     public Appliance getApp(Long app_id) {
