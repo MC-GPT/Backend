@@ -41,6 +41,9 @@ public class MemberController {
         List<Home> homes = new ArrayList<>();
         homes.addAll(guestService.getMyHomes(principal.getName()));
         homes.addAll(guestService.getGuestHomes(principal.getName()));
-        return homes;
+        if (homes == null)
+            return null;
+        else
+            return homes;
     }
 }
