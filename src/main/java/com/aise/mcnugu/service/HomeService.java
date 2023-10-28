@@ -7,12 +7,14 @@ import com.aise.mcnugu.dto.CreateHomeRequest;
 import com.aise.mcnugu.dto.MainResponse;
 import com.aise.mcnugu.repository.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class HomeService {
 
     private final HomeRepository homeRepository;
@@ -38,7 +40,7 @@ public class HomeService {
     public void deleteHome(Long home_id, String account) {
         Home home = homeRepository.findById(home_id).get();
         // only owner can delete
-        if(home.getOwner().getAccount() == account) {
+        if(home.getOwner().getAccount().equals(account)) {
             guestRepository.deleteAllByHome_Id(home_id);
             applianceRepository.deleteAllByHome_Id(home_id);
             homeRepository.deleteById(home_id);

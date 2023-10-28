@@ -43,7 +43,7 @@ public class ApplianceService {
     @Transactional
     public void deleteApp(Long app_id, String account) {
         Appliance app = applianceRepository.findById(app_id).get();
-        if(app.getHome().getOwner().getAccount() == account) {
+        if(app.getHome().getOwner().getAccount().equals(account)) {
             applianceRepository.deleteById(app_id);
         }
     }
