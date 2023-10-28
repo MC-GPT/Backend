@@ -20,6 +20,11 @@ public class HomeController {
         return homeService.createHome(createHomeRequest, principal.getName());
     }
 
+    @DeleteMapping("/delete-home")
+    public void deleteHome(Principal principal, @RequestParam(value = "home") String home_id) {
+        homeService.deleteHome(Long.parseLong(home_id), principal.getName());
+    }
+
     @GetMapping("/main")
     public MainResponse mainPage(Principal principal, @RequestParam(value = "home") String home_id) {
         return homeService.mainPage(principal.getName(), Long.parseLong(home_id));

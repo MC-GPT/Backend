@@ -33,6 +33,6 @@ public class Appliance {
     private boolean locked;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Home home;
 }

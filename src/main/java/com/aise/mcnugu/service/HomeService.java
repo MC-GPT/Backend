@@ -1,12 +1,11 @@
 package com.aise.mcnugu.service;
 
+import com.aise.mcnugu.domain.Guest;
 import com.aise.mcnugu.domain.Home;
 import com.aise.mcnugu.domain.Member;
 import com.aise.mcnugu.dto.CreateHomeRequest;
 import com.aise.mcnugu.dto.MainResponse;
-import com.aise.mcnugu.repository.GameRepository;
-import com.aise.mcnugu.repository.HomeRepository;
-import com.aise.mcnugu.repository.MemberRepository;
+import com.aise.mcnugu.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +18,8 @@ public class HomeService {
     private final HomeRepository homeRepository;
     private final MemberRepository memberRepository;
     private final GameRepository gameRepository;
+    private final GuestRepository guestRepository;
+    private final ApplianceRepository applianceRepository;
 
 
     @Transactional
@@ -31,6 +32,17 @@ public class HomeService {
         homeRepository.save(home);
 
         return home.getId();
+    }
+
+    @Transactional
+    public void deleteHome(Long home_id, String account) {
+        Home home = homeRepository.findById(home_id).get();
+        // only owner can delete
+        if(home.getOwner().getAccount() == account) {
+            guestRepository.deleteAllByHome_Id(home_id);
+            applianceRepository.deleteAllByHome_Id(home_id);
+            homeRepository.deleteById(home_id);
+        }
     }
 
     public MainResponse mainPage(String account, Long id) {

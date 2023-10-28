@@ -23,6 +23,11 @@ public class ApplianceController {
         return applianceService.createAppliance(principal.getName(), request);
     }
 
+    @DeleteMapping("/delete-app")
+    public void deleteAppliance(Principal principal, @RequestParam(value = "app") String app_id) {
+        applianceService.deleteApp(Long.parseLong(app_id), principal.getName());
+    }
+
     @GetMapping(value = "/apps")
     public List<Appliance> getApps(@RequestParam(value = "home") String home_id) {
         return applianceService.getApps(Long.parseLong(home_id));

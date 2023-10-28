@@ -40,6 +40,14 @@ public class ApplianceService {
         return applianceRepository.save(appliance).getId();
     }
 
+    @Transactional
+    public void deleteApp(Long app_id, String account) {
+        Appliance app = applianceRepository.findById(app_id).get();
+        if(app.getHome().getOwner().getAccount() == account) {
+            applianceRepository.deleteById(app_id);
+        }
+    }
+
     public List<Appliance> getApps(Long home_id) {
         return applianceRepository.findAllByHomeId(home_id);
     }

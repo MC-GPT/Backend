@@ -24,7 +24,7 @@ public class Home {
     private String code;
 
     @JsonIgnore // 양방향 참조시, json 응답 순환 => 한쪽 무시 처리
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Member owner;
 
     @JsonIgnore
