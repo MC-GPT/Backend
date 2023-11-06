@@ -35,6 +35,7 @@ public class MemberController {
         return memberService.login(loginRequest.getAccount(), loginRequest.getPassword());
     }
 
+    // 곧 삭제할거
     @GetMapping(value = "/homes")
     public List<Home> getHomes(Principal principal) {
         // 추후 응답에서 owner, guest 분리하여 깔끔하게 응답하면 좋을듯
@@ -45,5 +46,15 @@ public class MemberController {
             return null;
         else
             return homes;
+    }
+
+    @GetMapping(value = "/owner-homes")
+    public List<Home> getOwnerHomes(Principal principal) {
+        return guestService.getMyHomes(principal.getName());
+    }
+
+    @GetMapping(value = "/guest-homes")
+    public List<Home> getGuestHomes(Principal principal) {
+        return guestService.getGuestHomes(principal.getName());
     }
 }

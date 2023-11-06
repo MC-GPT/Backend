@@ -62,12 +62,9 @@ public class HomeService {
     }
 
     @Transactional
-    public String refreshHomeCode(String account, Long home_id) {
+    public void refreshHomeCode(String account, Long home_id) {
         Home home = homeRepository.findById(home_id).get();
         if(account.equals(home.getOwner().getAccount()))
-            return home.refreshCode();
-        else
-            // 권한이 없을 경우 에러!
-            return "error!";
+            guestRepository.deleteAllByHome_Id(home_id);
     }
 }

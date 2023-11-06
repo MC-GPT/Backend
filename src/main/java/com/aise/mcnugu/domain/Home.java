@@ -36,6 +36,7 @@ public class Home {
     private List<Appliance> appliances = new ArrayList<>();
 
 
+    // 삭제할거
     public String refreshCode() {
         code = Integer.toString((int)(Math.random() * 8999) + 1000) + owner.getId();
         guests.clear();

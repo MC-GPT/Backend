@@ -31,7 +31,7 @@ public class HomeController {
     }
 
     @PostMapping(value = "/refresh-home")
-    public String refreshHomeCode(Principal principal, @RequestParam(value = "home") String home_id) {
-        return homeService.refreshHomeCode(principal.getName(), Long.parseLong(home_id));
+    public void refreshHomeCode(Principal principal, @RequestParam(value = "home") String home_id) {
+        homeService.refreshHomeCode(principal.getName(), Long.parseLong(home_id));
     }
 }
