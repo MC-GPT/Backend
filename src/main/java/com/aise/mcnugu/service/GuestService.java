@@ -7,7 +7,6 @@ import com.aise.mcnugu.repository.GuestRepository;
 import com.aise.mcnugu.repository.HomeRepository;
 import com.aise.mcnugu.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.AjcMemberMaker;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,6 +1,5 @@
 package com.aise.mcnugu.service;
 
-import com.aise.mcnugu.domain.Guest;
 import com.aise.mcnugu.domain.Home;
 import com.aise.mcnugu.domain.Member;
 import com.aise.mcnugu.dto.CreateHomeRequest;
