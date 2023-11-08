@@ -16,6 +16,16 @@ public class NuguController {
     Random random = new Random();
 
 
+    @PostMapping(value = "/gather-up")
+    public NuguReturnDto conn() {
+        NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
+                .version("2.0")
+                .resultCode("OK")
+                .build();
+        return nuguReturnDto;
+    }
+
+
     // 시작 인원 적으면 종료
     @PostMapping(value = "/gather-up/check")
     public NuguReturnDto gatherup(@RequestBody String nugu) {
