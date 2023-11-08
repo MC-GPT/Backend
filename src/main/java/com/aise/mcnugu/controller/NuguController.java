@@ -29,19 +29,9 @@ public class NuguController {
     }
 
 
-    @PostMapping(value = "/gather-up")
-    public NuguReturnDto conn(@RequestBody String nugu) {
-        NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
-                .version("2.0")
-                .resultCode("OK")
-                .build();
-        return nuguReturnDto;
-    }
-
-
     // 시작 인원 적으면 종료
-    @PostMapping(value = "/gather-up/check")
-    public NuguReturnDto gatherup(@RequestBody String nugu) {
+    @PostMapping(value = "/check")
+    public NuguReturnDto check(@RequestBody String nugu) {
         JSONObject jsonObject = new JSONObject(nugu);
         String version = jsonObject.getString("version");
         JSONObject action = jsonObject.getJSONObject("action");
@@ -71,7 +61,7 @@ public class NuguController {
     }
 
     // 음악 재생
-    @PostMapping(value = "/gather-up/resumeWhileStopped")
+    @PostMapping(value = "/resumeWhileStopped")
     public NuguReturnDto resumeWhileStopped(@RequestBody String nugu) {
         JSONObject jsonObject = new JSONObject(nugu);
         String version = jsonObject.getString("version");
@@ -110,7 +100,7 @@ public class NuguController {
     }
 
     // 게임 모여라 명수 반환
-    @PostMapping(value = "/gather-up/answer")
+    @PostMapping(value = "/answer")
     public NuguReturnDto answer(@RequestBody String nugu) {
         JSONObject jsonObject = new JSONObject(nugu);
         String version = jsonObject.getString("version");
