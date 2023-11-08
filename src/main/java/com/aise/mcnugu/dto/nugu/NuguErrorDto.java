@@ -7,14 +7,14 @@ import lombok.Setter;
 
 @Getter @Setter
 @NoArgsConstructor
-public class NuguOutputDto {
+public class NuguErrorDto {
 
     private String code;
     private String message;
 
 
     @Builder
-    public NuguOutputDto(String code, String message) {
+    public NuguErrorDto(String code, String message) {
         this.code = code;
         this.message = message;
     }

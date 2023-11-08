@@ -42,7 +42,7 @@ public class NuguController {
 
         int start = j_start_num.getInt("value");
         if(start <= 2) {
-            NuguOutputDto nuguOutputDto = NuguOutputDto.builder()
+            NuguErrorDto nuguErrorDto = NuguErrorDto.builder()
                     .code("start_error")
                     .message("start number가 너무 작습니다.")
                     .build();
@@ -50,13 +50,18 @@ public class NuguController {
             NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
                     .version(version)
                     .resultCode("ERROR")
-                    .output(nuguOutputDto)
+                    .output(nuguErrorDto)
                     .build();
             return nuguReturnDto;
         } else {
+            NuguGatherUpDto nuguGatherUpDto = NuguGatherUpDto.builder()
+                    .start_num(start)
+                    .build();
+
             NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
                     .version(version)
                     .resultCode("OK")
+                    .output(nuguGatherUpDto)
                     .build();
             return nuguReturnDto;
         }

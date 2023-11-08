@@ -9,12 +9,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class NuguGatherUpDto {
 
-    // 시작 인원
+    private int start_num;
     private int game_num;
 
 
     @Builder
-    public NuguGatherUpDto(int game_num) {
+    public NuguGatherUpDto(int start_num, int game_num) {
+        this.start_num = start_num;
         this.game_num = game_num;
     }
 }
