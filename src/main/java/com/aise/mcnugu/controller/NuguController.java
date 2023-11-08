@@ -54,14 +54,9 @@ public class NuguController {
                     .build();
             return nuguReturnDto;
         } else {
-            NuguGatherUpDto nuguGatherUpDto = NuguGatherUpDto.builder()
-                    .start_num(start)
-                    .build();
-
             NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
                     .version(version)
                     .resultCode("OK")
-                    .output(nuguGatherUpDto)
                     .build();
             return nuguReturnDto;
         }
@@ -78,7 +73,7 @@ public class NuguController {
         JSONObject parameters = action.getJSONObject("parameters");
 
         NuguAudioDto.AudioItem.Stream stream = NuguAudioDto.AudioItem.Stream.builder()
-                .url("https://www.naver.com/")
+                .url("https://www.youtube.com/watch?v=Os_heh8vPfs")
                 .offsetInMilliseconds(0)
                 .build();
 
