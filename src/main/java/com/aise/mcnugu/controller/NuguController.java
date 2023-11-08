@@ -73,7 +73,7 @@ public class NuguController {
         JSONObject parameters = action.getJSONObject("parameters");
 
         NuguAudioDto.AudioItem.Stream stream = NuguAudioDto.AudioItem.Stream.builder()
-                .url("https://www.youtube.com/watch?v=Os_heh8vPfs")
+                .url("https://nonoki.com/music/track/17757159/spicy")
                 .offsetInMilliseconds(0)
                 .build();
 
