@@ -17,7 +17,7 @@ public class NuguController {
 
 
     @PostMapping(value = "/gather-up")
-    public NuguReturnDto conn() {
+    public NuguReturnDto conn(@RequestBody String nugu) {
         NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
                 .version("2.0")
                 .resultCode("OK")
