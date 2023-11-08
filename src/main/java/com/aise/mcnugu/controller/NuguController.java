@@ -32,6 +32,8 @@ public class NuguController {
     // 시작 인원 적으면 종료
     @PostMapping(value = "/check")
     public NuguReturnDto check(@RequestBody String nugu) {
+        log.info("check");
+        log.info(nugu);
         JSONObject jsonObject = new JSONObject(nugu);
         String version = jsonObject.getString("version");
         JSONObject action = jsonObject.getJSONObject("action");
@@ -63,6 +65,8 @@ public class NuguController {
     // 음악 재생
     @PostMapping(value = "/resumeWhileStopped")
     public NuguReturnDto resumeWhileStopped(@RequestBody String nugu) {
+        log.info("stopped");
+        log.info(nugu);
         JSONObject jsonObject = new JSONObject(nugu);
         String version = jsonObject.getString("version");
         JSONObject action = jsonObject.getJSONObject("action");
@@ -102,6 +106,8 @@ public class NuguController {
     // 게임 모여라 명수 반환
     @PostMapping(value = "/answer")
     public NuguReturnDto answer(@RequestBody String nugu) {
+        log.info("answer");
+        log.info(nugu);
         JSONObject jsonObject = new JSONObject(nugu);
         String version = jsonObject.getString("version");
         JSONObject action = jsonObject.getJSONObject("action");
