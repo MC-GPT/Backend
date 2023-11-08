@@ -16,6 +16,19 @@ public class NuguController {
     Random random = new Random();
 
 
+    // test
+    @PostMapping("/hi")
+    public NuguReturnDto hi(@RequestBody String nugu) {
+        log.info("hi");
+        log.info(nugu);
+        NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
+                .version("2.0")
+                .resultCode("OK")
+                .build();
+        return nuguReturnDto;
+    }
+
+
     @PostMapping(value = "/gather-up")
     public NuguReturnDto conn(@RequestBody String nugu) {
         NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
