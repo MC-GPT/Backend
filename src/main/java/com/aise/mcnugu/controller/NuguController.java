@@ -21,10 +21,31 @@ public class NuguController {
     public NuguReturnDto hi(@RequestBody String nugu) {
         log.info("hi");
         log.info(nugu);
-        NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
-                .version("2.0")
-                .resultCode("OK")
+        JSONObject jsonObject = new JSONObject(nugu);
+        String version = jsonObject.getString("version");
+        JSONObject action = jsonObject.getJSONObject("action");
+        JSONObject parameters = action.getJSONObject("parameters");
+
+        NuguAudioDto.AudioItem.Stream stream = NuguAudioDto.AudioItem.Stream.builder()
+                .url("https://drive.google.com/uc?export=download&id=1gRkrS2izf-n-zPIUO_m6cdxmIMUmqp1F")
+                .offsetInMilliseconds(0)
                 .build();
+
+        NuguAudioDto.AudioItem audioItem = NuguAudioDto.AudioItem.builder()
+                .stream(stream)
+                .build();
+
+        NuguAudioDto nuguAudioDto = NuguAudioDto.builder()
+                .type("AudioPlayer.Play")
+                .audioItem(audioItem)
+                .build();
+
+        NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
+                .version(version)
+                .resultCode("OK")
+                .directives(nuguAudioDto)
+                .build();
+
         return nuguReturnDto;
     }
 
