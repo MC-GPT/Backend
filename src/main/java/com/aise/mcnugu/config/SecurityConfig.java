@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 // 최종적으로는 /signup /login 만 남을것
-                .requestMatchers("/signup", "/login").permitAll()
+                .requestMatchers("/signup", "/login", "/ws/game").permitAll()
                 .requestMatchers("/hi", "/check", "/resumeWhileStopped", "/answer").permitAll()
                 //.requestMatchers("/members/test").hasRole("USER")
                 .anyRequest().authenticated()
