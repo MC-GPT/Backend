@@ -27,7 +27,7 @@ public class NuguController {
         JSONObject parameters = action.getJSONObject("parameters");
 
         NuguAudioDto.AudioItem.Stream stream = NuguAudioDto.AudioItem.Stream.builder()
-                .url("https://mc-nugu.s3.ap-northeast-2.amazonaws.com/spicy.mp3")
+                .url("https://d1n9ooebehi8sg.cloudfront.net/spicy.mp3")
                 .offsetInMilliseconds(0)
                 .build();
 
