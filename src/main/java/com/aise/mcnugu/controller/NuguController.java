@@ -73,7 +73,7 @@ public class NuguController {
         JSONObject parameters = action.getJSONObject("parameters");
 
         NuguAudioDto.AudioItem.Stream stream = NuguAudioDto.AudioItem.Stream.builder()
-                .url("https://ccrma.stanford.edu/~jos/mp3/harpsi-cs.mp3")
+                .url("https://www.music-api.com/stream/flo/music/123")
                 .offsetInMilliseconds(0)
                 .build();
 
