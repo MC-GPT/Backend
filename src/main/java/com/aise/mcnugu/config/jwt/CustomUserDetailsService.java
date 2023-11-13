@@ -1,4 +1,4 @@
-package com.aise.mcnugu.jwt;
+package com.aise.mcnugu.config.jwt;
 
 import com.aise.mcnugu.domain.Member;
 import com.aise.mcnugu.repository.MemberRepository;

@@ -3,7 +3,7 @@ package com.aise.mcnugu.controller;
 import com.aise.mcnugu.domain.Home;
 import com.aise.mcnugu.dto.LoginRequest;
 import com.aise.mcnugu.dto.SignupRequest;
-import com.aise.mcnugu.jwt.TokenInfo;
+import com.aise.mcnugu.config.jwt.TokenInfo;
 import com.aise.mcnugu.service.GuestService;
 import com.aise.mcnugu.service.MemberService;
 import lombok.RequiredArgsConstructor;

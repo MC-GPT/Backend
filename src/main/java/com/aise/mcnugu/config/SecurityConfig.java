@@ -1,7 +1,7 @@
 package com.aise.mcnugu.config;
 
-import com.aise.mcnugu.jwt.JwtAuthenticationFilter;
-import com.aise.mcnugu.jwt.JwtTokenProvider;
+import com.aise.mcnugu.config.jwt.JwtAuthenticationFilter;
+import com.aise.mcnugu.config.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,6 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                // 최종적으로는 /signup /login 만 남을것
                 .requestMatchers("/signup", "/login", "/ws/game").permitAll()
                 .requestMatchers("/hi", "/check", "/resumeWhileStopped", "/answer").permitAll()
                 //.requestMatchers("/members/test").hasRole("USER")

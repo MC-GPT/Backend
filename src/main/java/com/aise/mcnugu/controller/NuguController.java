@@ -16,40 +16,6 @@ public class NuguController {
     Random random = new Random();
 
 
-    // test
-    @PostMapping("/hi")
-    public NuguReturnDto hi(@RequestBody String nugu) {
-        log.info("hi");
-        log.info(nugu);
-        JSONObject jsonObject = new JSONObject(nugu);
-        String version = jsonObject.getString("version");
-        JSONObject action = jsonObject.getJSONObject("action");
-        JSONObject parameters = action.getJSONObject("parameters");
-
-        NuguAudioDto.AudioItem.Stream stream = NuguAudioDto.AudioItem.Stream.builder()
-                .url("https://d1n9ooebehi8sg.cloudfront.net/spicy.mp3")
-                .offsetInMilliseconds(0)
-                .build();
-
-        NuguAudioDto.AudioItem audioItem = NuguAudioDto.AudioItem.builder()
-                .stream(stream)
-                .build();
-
-        NuguAudioDto nuguAudioDto = NuguAudioDto.builder()
-                .type("AudioPlayer.Play")
-                .audioItem(audioItem)
-                .build();
-
-        NuguReturnDto nuguReturnDto = NuguReturnDto.builder()
-                .version(version)
-                .resultCode("OK")
-                .directives(nuguAudioDto)
-                .build();
-
-        return nuguReturnDto;
-    }
-
-
     // 시작 인원 적으면 종료
     @PostMapping(value = "/check")
     public NuguReturnDto check(@RequestBody String nugu) {

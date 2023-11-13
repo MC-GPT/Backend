@@ -1,4 +1,4 @@
-package com.aise.mcnugu.jwt;
+package com.aise.mcnugu.config.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
