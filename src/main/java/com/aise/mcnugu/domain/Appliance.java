@@ -14,7 +14,6 @@ public class Appliance {
     @Column(name = "app_id")
     private Long id;
 
-    @JsonIgnore
     @Column(name = "app_serial", unique = true)
     private String serialNumber;
 
