@@ -11,16 +11,14 @@ public class NuguReturnDto {
 
     private String version;
     private String resultCode;
-    private Object directives;
     private Object output;
     private Object action;
 
 
     @Builder
-    public NuguReturnDto(String version, String resultCode, Object directives, Object output, Object action) {
+    public NuguReturnDto(String version, String resultCode, Object output, Object action) {
         this.version = version;
         this.resultCode = resultCode;
-        this.directives = directives;
         this.output = output;
         this.action = action;
     }
